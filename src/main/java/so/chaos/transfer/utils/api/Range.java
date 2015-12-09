@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * a transferable object of range <br />
  * 
- * @author chengchaos
+ * @author chengchaos@gmail.com
  *
  */
 public interface Range extends Serializable {
@@ -15,11 +15,11 @@ public interface Range extends Serializable {
      * @return
      */
     public int getStart();
-    
+
     /**
      * 
      * @return
      */
     public int getLength();
-    
+
 }

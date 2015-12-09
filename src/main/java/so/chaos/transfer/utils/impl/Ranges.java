@@ -6,16 +6,16 @@ import so.chaos.transfer.utils.api.Range;
 
 /**
  * 
- * @author chengchaos
+ * @author chengchaos@gmail.com
  *
  */
-public class Ranges implements  Serializable {
-    
+public class Ranges implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
      * 
-     * @author chengchaos
+     * @author chengchaos@gmail.com
      *
      */
     private static final class InnerRange implements Range {
@@ -23,12 +23,12 @@ public class Ranges implements  Serializable {
         private static final long serialVersionUID = 1L;
         private final int start;
         private final int length;
-        
+
         private InnerRange(int start, int length) {
             this.start = start;
             this.length = length;
         }
-        
+
         @Override
         public int getStart() {
             return start;
@@ -38,37 +38,37 @@ public class Ranges implements  Serializable {
         public int getLength() {
             return length;
         }
-        
+
     }
-    
+
     /**
      * 
-     * @author chengchaos
+     * @author chengchaos@gmail.com
      *
      */
     private static class Builder implements Serializable {
-        
+
         private static final long serialVersionUID = 1L;
-        
+
         private int start;
         private int length;
-        
+
         public Builder setStart(int start) {
             this.start = start;
             return this;
         }
+
         public Builder setLength(int length) {
             this.length = length;
             return this;
         }
-        
+
         public Range range() {
             return new Ranges.InnerRange(this.start, this.length);
         }
-        
-        
+
     }
-    
+
     /**
      * 
      * @param start
@@ -76,40 +76,32 @@ public class Ranges implements  Serializable {
      * @return
      */
     public static final Range valueOfStartAndLength(int start, int length) {
-        
+
         return new Ranges.InnerRange(start, length);
     }
-    
-    
+
     /**
      * 
      * @return
      */
     public static final Ranges.Builder newBuilder() {
-        
+
         return new Ranges.Builder();
     }
-    
-    
-    
-    
+
     public static void main(String[] args) {
-        
-        Builder builder = newBuilder()
-                .setStart(0)
-                .setLength(10);
-        
+
+        Builder builder = newBuilder().setStart(0).setLength(10);
+
         for (int i = 0; i < 10; i++) {
             builder.setStart(i);
             Range range1 = builder.range();
             System.out.println(range1.getStart() + " :" + range1.getLength());
         }
-        
+
         Range range2 = Ranges.valueOfStartAndLength(20, 10);
         System.out.println(range2.getStart());
         System.out.println(range2.getLength());
-        
-        
-        
+
     }
 }
